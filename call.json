@@ -1,0 +1,82 @@
+// Request
+{
+    "jsonrpc": "2.0",
+    "method": "$STRING1",
+    "id": $INT,
+    "params": {
+        "$KEY1": "$VALUE1",
+        "$KEY2": {
+            "method": "$STRING2",
+            "params": {
+                "$KEY3": "$VALUE3"
+            }
+        }
+    }
+}
+
+// Response - success
+{
+    "jsonrpc": "2.0",
+    "id": $INT,
+    "result": "$STRING"
+    // or
+    "result": {
+      "$KEY1": "$VALUE1",
+      "$KEY2": "$VALUE2"
+    }
+}
+
+// Response - error  0xf80f4b6fd8db8018676e8fb122cf4e10454dbeeafdea0740363c82aec0a2f620
+{
+    "jsonrpc": "2.0",
+    "id": $INT1,
+    "error": {
+        "code": $INT2,
+        "message": "$STRING"
+    }
+}
+
+// Request
+{
+    "jsonrpc": "2.0",
+    "method": "icx_call",
+    "id": 1234,
+    "params": {
+        "from": "hxbe258ceb872e08851f1f59694dac2558708ece11", // TX sender address
+        "to": "cxb0776ee37f5b45bfaea8cff1d8232fbb6122ec32",   // SCORE address
+        "dataType": "call",
+        "data": {
+            "method": "get_balance", // SCORE external function
+            "params": {
+                "address": "hx1f9a3310f60a03934b917509c86442db703cbd52" // input parameter of "get_balance"
+            }
+        }
+    }
+}
+
+// Response - success
+{
+    "jsonrpc": "2.0",
+    "id": 1234,
+    "result": "0x2961fff8ca4a62327800000"
+}
+
+// Response - error
+{
+    "jsonrpc": "2.0",
+    "id": 1234,
+    "error": {
+        "code": -32601,
+        "message": "Method not found"
+    }
+}
+
+// Response - error
+{
+    "jsonrpc": "2.0",
+    "id": 1234,
+    "error": {
+        "code": -32602,
+        "message": "Invalid params"
+    }
+}
